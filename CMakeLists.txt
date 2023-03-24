@@ -2,9 +2,10 @@ cmake_minimum_required(VERSION 3.5.0)
 
 option(HUNTER_ENABLED "Enable Hunter package manager" NO)
 include("cmake/HunterGate.cmake")
+
 HunterGate(
-    URL "https://github.com/ruslo/hunter/archive/v0.20.31.tar.gz"
-    SHA1 "65c8f2292566aedb2fe10e08e09c74dda8e5d07a"
+    URL "https://github.com/cpp-pm/hunter/archive/v0.24.15.tar.gz"
+    SHA1 "8010d63d5ae611c564889d5fe12d3cb7a45703ac"
     LOCAL
 )
 
@@ -89,6 +90,7 @@ option(ENABLE_NETSSL_WIN "Enable NetSSL Windows" OFF)
 option(FORCE_OPENSSL "Force usage of OpenSSL even under windows" OFF)
 
 if(ENABLE_CRYPTO OR ENABLE_NETSSL OR ENABLE_JWT)
+    hunter_add_package(OpenSSL)
 	find_package(OpenSSL REQUIRED)
 else()
 	if(NOT HUNTER_ENABLED)
